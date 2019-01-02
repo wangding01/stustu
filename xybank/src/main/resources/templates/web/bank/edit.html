@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${bank.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">贷款方式：</label>
+								<div class="col-sm-8">
+									<input id="loan" name="loan" th:value="${bank.loan}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">放款银行：</label>
+								<div class="col-sm-8">
+									<input id="lendingBank" name="lendingBank" th:value="${bank.lendingBank}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">利息：</label>
+								<div class="col-sm-8">
+									<input id="interest" name="interest" th:value="${bank.interest}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">地区范围：</label>
+								<div class="col-sm-8">
+									<input id="area" name="area" th:value="${bank.area}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">额度：</label>
+								<div class="col-sm-8">
+									<input id="lendingLines" name="lendingLines" th:value="${bank.lendingLines}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">期限：</label>
+								<div class="col-sm-8">
+									<input id="lendingLimit" name="lendingLimit" th:value="${bank.lendingLimit}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">准入条件：</label>
+								<div class="col-sm-8">
+									<input id="access" name="access" th:value="${bank.access}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">征信条件：</label>
+								<div class="col-sm-8">
+									<input id="creditConditions" name="creditConditions" th:value="${bank.creditConditions}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">年龄min：</label>
+								<div class="col-sm-8">
+									<input id="minAge" name="minAge" th:value="${bank.minAge}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">年龄max：</label>
+								<div class="col-sm-8">
+									<input id="maxAge" name="maxAge" th:value="${bank.maxAge}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">放款时间：</label>
+								<div class="col-sm-8">
+									<input id="lendingTime" name="lendingTime" th:value="${bank.lendingTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">手续费：</label>
+								<div class="col-sm-8">
+									<input id="poundage" name="poundage" th:value="${bank.poundage}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">放大倍数：</label>
+								<div class="col-sm-8">
+									<input id="magnification" name="magnification" th:value="${bank.magnification}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">劣势：</label>
+								<div class="col-sm-8">
+									<input id="disadvantage" name="disadvantage" th:value="${bank.disadvantage}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">优势：</label>
+								<div class="col-sm-8">
+									<input id="advantage" name="advantage" th:value="${bank.advantage}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">特殊要求：</label>
+								<div class="col-sm-8">
+									<input id="specialRequirements" name="specialRequirements" th:value="${bank.specialRequirements}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">抵押类型：</label>
+								<div class="col-sm-8">
+									<input id="mortgageType" name="mortgageType" th:value="${bank.mortgageType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">还款方式：</label>
+								<div class="col-sm-8">
+									<input id="reimbursementMeans" name="reimbursementMeans" th:value="${bank.reimbursementMeans}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">放款比例：</label>
+								<div class="col-sm-8">
+									<input id="lendingRate" name="lendingRate" th:value="${bank.lendingRate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">需要资料：</label>
+								<div class="col-sm-8">
+									<input id="needInformation" name="needInformation" th:value="${bank.needInformation}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">房龄要求：</label>
+								<div class="col-sm-8">
+									<input id="hoseAge" name="hoseAge" th:value="${bank.hoseAge}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户要求：</label>
+								<div class="col-sm-8">
+									<input id="customerRequest" name="customerRequest" th:value="${bank.customerRequest}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">流程：</label>
+								<div class="col-sm-8">
+									<input id="process" name="process" th:value="${bank.process}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否压证：</label>
+								<div class="col-sm-8">
+									<input id="needCertificates" name="needCertificates" th:value="${bank.needCertificates}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">评估公证费：</label>
+								<div class="col-sm-8">
+									<input id="evaluateNotaryFees" name="evaluateNotaryFees" th:value="${bank.evaluateNotaryFees}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否看名族：</label>
+								<div class="col-sm-8">
+									<input id="needNational" name="needNational" th:value="${bank.needNational}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">返点：</label>
+								<div class="col-sm-8">
+									<input id="rebates" name="rebates" th:value="${bank.rebates}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">GPS费用：</label>
+								<div class="col-sm-8">
+									<input id="gpsFees" name="gpsFees" th:value="${bank.gpsFees}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人：</label>
+								<div class="col-sm-8">
+									<input id="contact" name="contact" th:value="${bank.contact}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人电话：</label>
+								<div class="col-sm-8">
+									<input id="contactPhone" name="contactPhone" th:value="${bank.contactPhone}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/web/bank/edit.js">
+	</script>
+</body>
+</html>

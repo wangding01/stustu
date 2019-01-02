@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shuttle.web.product.dao.ProductDao">
+
+	<select id="get" resultType="com.shuttle.web.product.domain.ProductDO">
+		select `id`,`name`,`service_type`,`shelf_time`,`prime_cost`,`sale_price`,`creator`,`create_time`,`update_time`,`updator`,`remark` from tds_product where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.shuttle.web.product.domain.ProductDO">
+		select `id`,`name`,`service_type`,`shelf_time`,`prime_cost`,`sale_price`,`creator`,`create_time`,`update_time`,`updator`,`remark` from tds_product
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="serviceType != null and serviceType != ''"> and service_type = #{serviceType} </if>
+		  		  <if test="shelfTime != null and shelfTime != ''"> and shelf_time = #{shelfTime} </if>
+		  		  <if test="primeCost != null and primeCost != ''"> and prime_cost = #{primeCost} </if>
+		  		  <if test="salePrice != null and salePrice != ''"> and sale_price = #{salePrice} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from tds_product
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="serviceType != null and serviceType != ''"> and service_type = #{serviceType} </if>
+		  		  <if test="shelfTime != null and shelfTime != ''"> and shelf_time = #{shelfTime} </if>
+		  		  <if test="primeCost != null and primeCost != ''"> and prime_cost = #{primeCost} </if>
+		  		  <if test="salePrice != null and salePrice != ''"> and sale_price = #{salePrice} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.shuttle.web.product.domain.ProductDO">
+		insert into tds_product
+		(
+			`id`, 
+			`name`, 
+			`service_type`, 
+			`shelf_time`, 
+			`prime_cost`, 
+			`sale_price`, 
+			`creator`, 
+			`create_time`, 
+			`update_time`, 
+			`updator`, 
+			`remark`
+		)
+		values
+		(
+			#{id}, 
+			#{name}, 
+			#{serviceType}, 
+			#{shelfTime}, 
+			#{primeCost}, 
+			#{salePrice}, 
+			#{creator}, 
+			#{createTime}, 
+			#{updateTime}, 
+			#{updator}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.shuttle.web.product.domain.ProductDO">
+		update tds_product 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="serviceType != null">`service_type` = #{serviceType}, </if>
+			<if test="shelfTime != null">`shelf_time` = #{shelfTime}, </if>
+			<if test="primeCost != null">`prime_cost` = #{primeCost}, </if>
+			<if test="salePrice != null">`sale_price` = #{salePrice}, </if>
+			<if test="creator != null">`creator` = #{creator}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="updator != null">`updator` = #{updator}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from tds_product where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from tds_product where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

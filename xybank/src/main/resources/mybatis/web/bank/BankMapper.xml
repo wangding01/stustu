@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shuttle.web.bank.dao.BankDao">
+
+	<select id="get" resultType="com.shuttle.web.bank.domain.BankDO">
+		select `id`,`loan`,`lending_bank`,`min_interest`,`max_interest`,`area`,`lending_lines`,`lending_limit`,`access`,`credit_conditions`,`min_age`,`max_age`,`lending_time`,`poundage`,`magnification`,`disadvantage`,`advantage`,`special_requirements`,`mortgage_type`,`reimbursement_means`,`lending_rate`,`need_information`,`hose_age`,`customer_request`,`process`,`need_certificates`,`evaluate_notary_fees`,`need_national`,`rebates`,`gps_fees`,`contact`,`contact_phone` from table_bank where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.shuttle.web.bank.domain.BankDO">
+		select `id`,`loan`,`lending_bank`,`min_interest`,`max_interest`,`area`,`lending_lines`,`lending_limit`,`access`,`credit_conditions`,`min_age`,`max_age`,`lending_time`,`poundage`,`magnification`,`disadvantage`,`advantage`,`special_requirements`,`mortgage_type`,`reimbursement_means`,`lending_rate`,`need_information`,`hose_age`,`customer_request`,`process`,`need_certificates`,`evaluate_notary_fees`,`need_national`,`rebates`,`gps_fees`,`contact`,`contact_phone` from table_bank
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="loan != null and loan != ''"> and loan = #{loan} </if>
+		  		  <if test="lendingBank != null and lendingBank != ''"> and lending_bank = #{lendingBank} </if>
+		  		  <if test="minInterest != null and minInterest != ''"> and min_interest = #{minInterest} </if>
+		  		  <if test="maxInterest != null and maxInterest != ''"> and max_interest = #{maxInterest} </if>
+		  		  <if test="area != null and area != ''"> and area = #{area} </if>
+		  		  <if test="lendingLines != null and lendingLines != ''"> and lending_lines = #{lendingLines} </if>
+		  		  <if test="lendingLimit != null and lendingLimit != ''"> and lending_limit = #{lendingLimit} </if>
+		  		  <if test="access != null and access != ''"> and access = #{access} </if>
+		  		  <if test="creditConditions != null and creditConditions != ''"> and credit_conditions = #{creditConditions} </if>
+		  		  <if test="minAge != null and minAge != ''"> and min_age = #{minAge} </if>
+		  		  <if test="maxAge != null and maxAge != ''"> and max_age = #{maxAge} </if>
+		  		  <if test="lendingTime != null and lendingTime != ''"> and lending_time = #{lendingTime} </if>
+		  		  <if test="poundage != null and poundage != ''"> and poundage = #{poundage} </if>
+		  		  <if test="magnification != null and magnification != ''"> and magnification = #{magnification} </if>
+		  		  <if test="disadvantage != null and disadvantage != ''"> and disadvantage = #{disadvantage} </if>
+		  		  <if test="advantage != null and advantage != ''"> and advantage = #{advantage} </if>
+		  		  <if test="specialRequirements != null and specialRequirements != ''"> and special_requirements = #{specialRequirements} </if>
+		  		  <if test="mortgageType != null and mortgageType != ''"> and mortgage_type = #{mortgageType} </if>
+		  		  <if test="reimbursementMeans != null and reimbursementMeans != ''"> and reimbursement_means = #{reimbursementMeans} </if>
+		  		  <if test="lendingRate != null and lendingRate != ''"> and lending_rate = #{lendingRate} </if>
+		  		  <if test="needInformation != null and needInformation != ''"> and need_information = #{needInformation} </if>
+		  		  <if test="hoseAge != null and hoseAge != ''"> and hose_age = #{hoseAge} </if>
+		  		  <if test="customerRequest != null and customerRequest != ''"> and customer_request = #{customerRequest} </if>
+		  		  <if test="process != null and process != ''"> and process = #{process} </if>
+		  		  <if test="needCertificates != null and needCertificates != ''"> and need_certificates = #{needCertificates} </if>
+		  		  <if test="evaluateNotaryFees != null and evaluateNotaryFees != ''"> and evaluate_notary_fees = #{evaluateNotaryFees} </if>
+		  		  <if test="needNational != null and needNational != ''"> and need_national = #{needNational} </if>
+		  		  <if test="rebates != null and rebates != ''"> and rebates = #{rebates} </if>
+		  		  <if test="gpsFees != null and gpsFees != ''"> and gps_fees = #{gpsFees} </if>
+		  		  <if test="contact != null and contact != ''"> and contact = #{contact} </if>
+		  		  <if test="contactPhone != null and contactPhone != ''"> and contact_phone = #{contactPhone} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from table_bank
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="loan != null and loan != ''"> and loan = #{loan} </if>
+		  		  <if test="lendingBank != null and lendingBank != ''"> and lending_bank = #{lendingBank} </if>
+		  		  <if test="minInterest != null and minInterest != ''"> and min_interest = #{minInterest} </if>
+		  		  <if test="maxInterest != null and maxInterest != ''"> and max_interest = #{maxInterest} </if>
+		  		  <if test="area != null and area != ''"> and area = #{area} </if>
+		  		  <if test="lendingLines != null and lendingLines != ''"> and lending_lines = #{lendingLines} </if>
+		  		  <if test="lendingLimit != null and lendingLimit != ''"> and lending_limit = #{lendingLimit} </if>
+		  		  <if test="access != null and access != ''"> and access = #{access} </if>
+		  		  <if test="creditConditions != null and creditConditions != ''"> and credit_conditions = #{creditConditions} </if>
+		  		  <if test="minAge != null and minAge != ''"> and min_age = #{minAge} </if>
+		  		  <if test="maxAge != null and maxAge != ''"> and max_age = #{maxAge} </if>
+		  		  <if test="lendingTime != null and lendingTime != ''"> and lending_time = #{lendingTime} </if>
+		  		  <if test="poundage != null and poundage != ''"> and poundage = #{poundage} </if>
+		  		  <if test="magnification != null and magnification != ''"> and magnification = #{magnification} </if>
+		  		  <if test="disadvantage != null and disadvantage != ''"> and disadvantage = #{disadvantage} </if>
+		  		  <if test="advantage != null and advantage != ''"> and advantage = #{advantage} </if>
+		  		  <if test="specialRequirements != null and specialRequirements != ''"> and special_requirements = #{specialRequirements} </if>
+		  		  <if test="mortgageType != null and mortgageType != ''"> and mortgage_type = #{mortgageType} </if>
+		  		  <if test="reimbursementMeans != null and reimbursementMeans != ''"> and reimbursement_means = #{reimbursementMeans} </if>
+		  		  <if test="lendingRate != null and lendingRate != ''"> and lending_rate = #{lendingRate} </if>
+		  		  <if test="needInformation != null and needInformation != ''"> and need_information = #{needInformation} </if>
+		  		  <if test="hoseAge != null and hoseAge != ''"> and hose_age = #{hoseAge} </if>
+		  		  <if test="customerRequest != null and customerRequest != ''"> and customer_request = #{customerRequest} </if>
+		  		  <if test="process != null and process != ''"> and process = #{process} </if>
+		  		  <if test="needCertificates != null and needCertificates != ''"> and need_certificates = #{needCertificates} </if>
+		  		  <if test="evaluateNotaryFees != null and evaluateNotaryFees != ''"> and evaluate_notary_fees = #{evaluateNotaryFees} </if>
+		  		  <if test="needNational != null and needNational != ''"> and need_national = #{needNational} </if>
+		  		  <if test="rebates != null and rebates != ''"> and rebates = #{rebates} </if>
+		  		  <if test="gpsFees != null and gpsFees != ''"> and gps_fees = #{gpsFees} </if>
+		  		  <if test="contact != null and contact != ''"> and contact = #{contact} </if>
+		  		  <if test="contactPhone != null and contactPhone != ''"> and contact_phone = #{contactPhone} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.shuttle.web.bank.domain.BankDO" useGeneratedKeys="true" keyProperty="id">
+		insert into table_bank
+		(
+			`loan`, 
+			`lending_bank`, 
+			`min_interest`, 
+			`max_interest`, 
+			`area`, 
+			`lending_lines`, 
+			`lending_limit`, 
+			`access`, 
+			`credit_conditions`, 
+			`min_age`, 
+			`max_age`, 
+			`lending_time`, 
+			`poundage`, 
+			`magnification`, 
+			`disadvantage`, 
+			`advantage`, 
+			`special_requirements`, 
+			`mortgage_type`, 
+			`reimbursement_means`, 
+			`lending_rate`, 
+			`need_information`, 
+			`hose_age`, 
+			`customer_request`, 
+			`process`, 
+			`need_certificates`, 
+			`evaluate_notary_fees`, 
+			`need_national`, 
+			`rebates`, 
+			`gps_fees`, 
+			`contact`, 
+			`contact_phone`
+		)
+		values
+		(
+			#{loan}, 
+			#{lendingBank}, 
+			#{minInterest}, 
+			#{maxInterest}, 
+			#{area}, 
+			#{lendingLines}, 
+			#{lendingLimit}, 
+			#{access}, 
+			#{creditConditions}, 
+			#{minAge}, 
+			#{maxAge}, 
+			#{lendingTime}, 
+			#{poundage}, 
+			#{magnification}, 
+			#{disadvantage}, 
+			#{advantage}, 
+			#{specialRequirements}, 
+			#{mortgageType}, 
+			#{reimbursementMeans}, 
+			#{lendingRate}, 
+			#{needInformation}, 
+			#{hoseAge}, 
+			#{customerRequest}, 
+			#{process}, 
+			#{needCertificates}, 
+			#{evaluateNotaryFees}, 
+			#{needNational}, 
+			#{rebates}, 
+			#{gpsFees}, 
+			#{contact}, 
+			#{contactPhone}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.shuttle.web.bank.domain.BankDO">
+		update table_bank 
+		<set>
+			<if test="loan != null">`loan` = #{loan}, </if>
+			<if test="lendingBank != null">`lending_bank` = #{lendingBank}, </if>
+			<if test="minInterest != null and minInterest != ''"> and min_interest = #{minInterest}, </if>
+		  	<if test="maxInterest != null and maxInterest != ''"> and max_interest = #{maxInterest}, </if>
+			<if test="area != null">`area` = #{area}, </if>
+			<if test="lendingLines != null">`lending_lines` = #{lendingLines}, </if>
+			<if test="lendingLimit != null">`lending_limit` = #{lendingLimit}, </if>
+			<if test="access != null">`access` = #{access}, </if>
+			<if test="creditConditions != null">`credit_conditions` = #{creditConditions}, </if>
+			<if test="minAge != null">`min_age` = #{minAge}, </if>
+			<if test="maxAge != null">`max_age` = #{maxAge}, </if>
+			<if test="lendingTime != null">`lending_time` = #{lendingTime}, </if>
+			<if test="poundage != null">`poundage` = #{poundage}, </if>
+			<if test="magnification != null">`magnification` = #{magnification}, </if>
+			<if test="disadvantage != null">`disadvantage` = #{disadvantage}, </if>
+			<if test="advantage != null">`advantage` = #{advantage}, </if>
+			<if test="specialRequirements != null">`special_requirements` = #{specialRequirements}, </if>
+			<if test="mortgageType != null">`mortgage_type` = #{mortgageType}, </if>
+			<if test="reimbursementMeans != null">`reimbursement_means` = #{reimbursementMeans}, </if>
+			<if test="lendingRate != null">`lending_rate` = #{lendingRate}, </if>
+			<if test="needInformation != null">`need_information` = #{needInformation}, </if>
+			<if test="hoseAge != null">`hose_age` = #{hoseAge}, </if>
+			<if test="customerRequest != null">`customer_request` = #{customerRequest}, </if>
+			<if test="process != null">`process` = #{process}, </if>
+			<if test="needCertificates != null">`need_certificates` = #{needCertificates}, </if>
+			<if test="evaluateNotaryFees != null">`evaluate_notary_fees` = #{evaluateNotaryFees}, </if>
+			<if test="needNational != null">`need_national` = #{needNational}, </if>
+			<if test="rebates != null">`rebates` = #{rebates}, </if>
+			<if test="gpsFees != null">`gps_fees` = #{gpsFees}, </if>
+			<if test="contact != null">`contact` = #{contact}, </if>
+			<if test="contactPhone != null">`contact_phone` = #{contactPhone}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from table_bank where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from table_bank where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

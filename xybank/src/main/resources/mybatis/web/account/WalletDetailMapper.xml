@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shuttle.web.account.dao.WalletDetailDao">
+
+	<select id="get" resultType="com.shuttle.web.account.domain.WalletDetailDO">
+		select `wallet_detail_id`,`wallet_id`,`income_expend_type`,`pay_mode`,`income_expend_money`,`generate_time`,`income_expend_description`,`create_time`,`creator`,`update_time`,`updator`,`remark` from account_wallet_detail where wallet_detail_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.shuttle.web.account.domain.WalletDetailDO">
+		select `wallet_detail_id`,`wallet_id`,`income_expend_type`,`pay_mode`,`income_expend_money`,`generate_time`,`income_expend_description`,`create_time`,`creator`,`update_time`,`updator`,`remark` from account_wallet_detail
+        <where>  
+		  		  <if test="walletDetailId != null and walletDetailId != ''"> and wallet_detail_id = #{walletDetailId} </if>
+		  		  <if test="walletId != null and walletId != ''"> and wallet_id = #{walletId} </if>
+		  		  <if test="incomeExpendType != null and incomeExpendType != ''"> and income_expend_type = #{incomeExpendType} </if>
+		  		  <if test="payMode != null and payMode != ''"> and pay_mode = #{payMode} </if>
+		  		  <if test="incomeExpendMoney != null and incomeExpendMoney != ''"> and income_expend_money = #{incomeExpendMoney} </if>
+		  		  <if test="generateTime != null and generateTime != ''"> and generate_time = #{generateTime} </if>
+		  		  <if test="incomeExpendDescription != null and incomeExpendDescription != ''"> and income_expend_description = #{incomeExpendDescription} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by wallet_detail_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from account_wallet_detail
+		 <where>  
+		  		  <if test="walletDetailId != null and walletDetailId != ''"> and wallet_detail_id = #{walletDetailId} </if>
+		  		  <if test="walletId != null and walletId != ''"> and wallet_id = #{walletId} </if>
+		  		  <if test="incomeExpendType != null and incomeExpendType != ''"> and income_expend_type = #{incomeExpendType} </if>
+		  		  <if test="payMode != null and payMode != ''"> and pay_mode = #{payMode} </if>
+		  		  <if test="incomeExpendMoney != null and incomeExpendMoney != ''"> and income_expend_money = #{incomeExpendMoney} </if>
+		  		  <if test="generateTime != null and generateTime != ''"> and generate_time = #{generateTime} </if>
+		  		  <if test="incomeExpendDescription != null and incomeExpendDescription != ''"> and income_expend_description = #{incomeExpendDescription} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.shuttle.web.account.domain.WalletDetailDO">
+		insert into account_wallet_detail
+		(
+			`wallet_detail_id`, 
+			`wallet_id`, 
+			`income_expend_type`, 
+			`pay_mode`, 
+			`income_expend_money`, 
+			`generate_time`, 
+			`income_expend_description`, 
+			`create_time`, 
+			`creator`, 
+			`update_time`, 
+			`updator`, 
+			`remark`
+		)
+		values
+		(
+			#{walletDetailId}, 
+			#{walletId}, 
+			#{incomeExpendType}, 
+			#{payMode}, 
+			#{incomeExpendMoney}, 
+			#{generateTime}, 
+			#{incomeExpendDescription}, 
+			#{createTime}, 
+			#{creator}, 
+			#{updateTime}, 
+			#{updator}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.shuttle.web.account.domain.WalletDetailDO">
+		update account_wallet_detail 
+		<set>
+			<if test="walletId != null">`wallet_id` = #{walletId}, </if>
+			<if test="incomeExpendType != null">`income_expend_type` = #{incomeExpendType}, </if>
+			<if test="payMode != null">`pay_mode` = #{payMode}, </if>
+			<if test="incomeExpendMoney != null">`income_expend_money` = #{incomeExpendMoney}, </if>
+			<if test="generateTime != null">`generate_time` = #{generateTime}, </if>
+			<if test="incomeExpendDescription != null">`income_expend_description` = #{incomeExpendDescription}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="creator != null">`creator` = #{creator}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="updator != null">`updator` = #{updator}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where wallet_detail_id = #{walletDetailId}
+	</update>
+	
+	<delete id="remove">
+		delete from account_wallet_detail where wallet_detail_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from account_wallet_detail where wallet_detail_id in 
+		<foreach item="walletDetailId" collection="array" open="(" separator="," close=")">
+			#{walletDetailId}
+		</foreach>
+	</delete>
+
+</mapper>

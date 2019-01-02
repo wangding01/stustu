@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shuttle.web.business.dao.BusinessInfoDao">
+
+	<select id="get" resultType="com.shuttle.web.business.domain.BusinessInfoDO">
+		select `business_id`,`business_name`,`business_address`,`contacts`,`mobile_phone`,`landline`,`registration_time`,`business_status`,`password`,`create_time`,`creator`,`update_time`,`updator`,`remark`,`owner_id` from tds_business_info where business_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.shuttle.web.business.domain.BusinessInfoDO">
+		select `business_id`,`business_name`,`business_address`,`contacts`,`mobile_phone`,`landline`,`registration_time`,`business_status`,`password`,`create_time`,`creator`,`update_time`,`updator`,`remark`,`owner_id` from tds_business_info
+        <where>  
+		  		  <if test="businessId != null and businessId != ''"> and business_id = #{businessId} </if>
+		  		  <if test="businessName != null and businessName != ''"> and business_name = #{businessName} </if>
+		  		  <if test="businessAddress != null and businessAddress != ''"> and business_address = #{businessAddress} </if>
+		  		  <if test="contacts != null and contacts != ''"> and contacts = #{contacts} </if>
+		  		  <if test="mobilePhone != null and mobilePhone != ''"> and mobile_phone = #{mobilePhone} </if>
+		  		  <if test="landline != null and landline != ''"> and landline = #{landline} </if>
+		  		  <if test="registrationTime != null and registrationTime != ''"> and registration_time = #{registrationTime} </if>
+		  		  <if test="businessStatus != null and businessStatus != ''"> and business_status = #{businessStatus} </if>
+		  		  <if test="password != null and password != ''"> and password = #{password} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="ownerId != null and ownerId != ''"> and owner_id = #{ownerId} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by business_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from tds_business_info
+		 <where>  
+		  		  <if test="businessId != null and businessId != ''"> and business_id = #{businessId} </if>
+		  		  <if test="businessName != null and businessName != ''"> and business_name = #{businessName} </if>
+		  		  <if test="businessAddress != null and businessAddress != ''"> and business_address = #{businessAddress} </if>
+		  		  <if test="contacts != null and contacts != ''"> and contacts = #{contacts} </if>
+		  		  <if test="mobilePhone != null and mobilePhone != ''"> and mobile_phone = #{mobilePhone} </if>
+		  		  <if test="landline != null and landline != ''"> and landline = #{landline} </if>
+		  		  <if test="registrationTime != null and registrationTime != ''"> and registration_time = #{registrationTime} </if>
+		  		  <if test="businessStatus != null and businessStatus != ''"> and business_status = #{businessStatus} </if>
+		  		  <if test="password != null and password != ''"> and password = #{password} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="ownerId != null and ownerId != ''"> and owner_id = #{ownerId} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.shuttle.web.business.domain.BusinessInfoDO">
+		insert into tds_business_info
+		(
+			`business_id`, 
+			`business_name`, 
+			`business_address`, 
+			`contacts`, 
+			`mobile_phone`, 
+			`landline`, 
+			`registration_time`, 
+			`business_status`, 
+			`password`, 
+			`create_time`, 
+			`creator`, 
+			`update_time`, 
+			`updator`, 
+			`remark`, 
+			`owner_id`
+		)
+		values
+		(
+			#{businessId}, 
+			#{businessName}, 
+			#{businessAddress}, 
+			#{contacts}, 
+			#{mobilePhone}, 
+			#{landline}, 
+			#{registrationTime}, 
+			#{businessStatus}, 
+			#{password}, 
+			#{createTime}, 
+			#{creator}, 
+			#{updateTime}, 
+			#{updator}, 
+			#{remark}, 
+			#{ownerId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.shuttle.web.business.domain.BusinessInfoDO">
+		update tds_business_info 
+		<set>
+			<if test="businessName != null">`business_name` = #{businessName}, </if>
+			<if test="businessAddress != null">`business_address` = #{businessAddress}, </if>
+			<if test="contacts != null">`contacts` = #{contacts}, </if>
+			<if test="mobilePhone != null">`mobile_phone` = #{mobilePhone}, </if>
+			<if test="landline != null">`landline` = #{landline}, </if>
+			<if test="registrationTime != null">`registration_time` = #{registrationTime}, </if>
+			<if test="businessStatus != null">`business_status` = #{businessStatus}, </if>
+			<if test="password != null">`password` = #{password}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="creator != null">`creator` = #{creator}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="updator != null">`updator` = #{updator}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="ownerId != null">`owner_id` = #{ownerId}</if>
+		</set>
+		where business_id = #{businessId}
+	</update>
+	
+	<delete id="remove">
+		delete from tds_business_info where business_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from tds_business_info where business_id in 
+		<foreach item="businessId" collection="array" open="(" separator="," close=")">
+			#{businessId}
+		</foreach>
+	</delete>
+<!--重置密码-->
+	<update id="resetPwd" parameterType="map" >
+		UPDATE tds_business_info s SET s.password = ${pwd} WHERE s.business_id=${businessId}
+	</update>
+	
+	<select id="getByUserId" resultType="com.shuttle.web.business.domain.BusinessInfoDO" parameterType="Long">
+		select `business_id`,`business_name`,`business_address`,`contacts`,`mobile_phone`,`landline`,`registration_time`,`business_status`,`password`,`create_time`,`creator`,`update_time`,`updator`,`remark`,`owner_id` from tds_business_info where owner_id = #{userId}
+	</select>
+</mapper>

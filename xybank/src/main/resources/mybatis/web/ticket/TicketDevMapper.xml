@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shuttle.web.ticket.dao.TicketDevDao">
+
+	<select id="get" resultType="com.shuttle.web.ticket.domain.TicketDevDO" parameterType="String">
+		select `ticket_id`,`client_id`,`mobile_number`,`qr_code_id`,`ticket_type`,`station_type`,`passenger_number`,`buy_tickets_time`,`start_time`,`end_time`,`use_time`,`start_location_id`,`start_name`,`start_address`,`start_longitude`,`start_latitude`,`start_direction`,`end_location_id`,`end_name`,`end_address`,`end_longitude`,`end_latitude`,`end_direction`,`ticket_status`,`pay_status`,`amount_payment`,`assess_status`,`create_time`,`creator`,`update_time`,`updator`,`remark`,`source`,`product_id`,`product_sale_price` from shuttle_ticket_dev where ticket_id = #{ticketId}
+	</select>
+
+	<select id="list" resultType="com.shuttle.web.ticket.domain.TicketDevDO">
+		select `ticket_id`,`client_id`,`mobile_number`,`qr_code_id`,`ticket_type`,`station_type`,`passenger_number`,`buy_tickets_time`,`start_time`,`end_time`,`use_time`,`start_location_id`,`start_name`,`start_address`,`start_longitude`,`start_latitude`,`start_direction`,`end_location_id`,`end_name`,`end_address`,`end_longitude`,`end_latitude`,`end_direction`,`ticket_status`,`pay_status`,`amount_payment`,`assess_status`,`create_time`,`creator`,`update_time`,`updator`,`remark`,`source`,`product_id`,`product_sale_price` from shuttle_ticket_dev
+        <where>  
+		  		  <if test="ticketId != null and ticketId != ''"> and ticket_id = #{ticketId} </if>
+		  		  <if test="clientId != null and clientId != ''"> and client_id = #{clientId} </if>
+		  		  <if test="mobileNumber != null and mobileNumber != ''"> and mobile_number = #{mobileNumber} </if>
+		  		  <if test="qrCodeId != null and qrCodeId != ''"> and qr_code_id = #{qrCodeId} </if>
+		  		  <if test="ticketType != null and ticketType != ''"> and ticket_type = #{ticketType} </if>
+		  		  <if test="stationType != null and stationType != ''"> and station_type = #{stationType} </if>
+		  		  <if test="passengerNumber != null and passengerNumber != ''"> and passenger_number = #{passengerNumber} </if>
+		  		  <if test="buyTicketsTime != null and buyTicketsTime != ''"> and buy_tickets_time = #{buyTicketsTime} </if>
+		  		  <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+		  		  <if test="endTime != null and endTime != ''"> and end_time = #{endTime} </if>
+		  		  <if test="useTime != null and useTime != ''"> and use_time = #{useTime} </if>
+		  		  <if test="startLocationId != null and startLocationId != ''"> and start_location_id = #{startLocationId} </if>
+		  		  <if test="startName != null and startName != ''"> and start_name = #{startName} </if>
+		  		  <if test="startAddress != null and startAddress != ''"> and start_address = #{startAddress} </if>
+		  		  <if test="startLongitude != null and startLongitude != ''"> and start_longitude = #{startLongitude} </if>
+		  		  <if test="startLatitude != null and startLatitude != ''"> and start_latitude = #{startLatitude} </if>
+		  		  <if test="startDirection != null and startDirection != ''"> and start_direction = #{startDirection} </if>
+		  		  <if test="endLocationId != null and endLocationId != ''"> and end_location_id = #{endLocationId} </if>
+		  		  <if test="endName != null and endName != ''"> and end_name = #{endName} </if>
+		  		  <if test="endAddress != null and endAddress != ''"> and end_address = #{endAddress} </if>
+		  		  <if test="endLongitude != null and endLongitude != ''"> and end_longitude = #{endLongitude} </if>
+		  		  <if test="endLatitude != null and endLatitude != ''"> and end_latitude = #{endLatitude} </if>
+		  		  <if test="endDirection != null and endDirection != ''"> and end_direction = #{endDirection} </if>
+		  		  <if test="ticketStatus != null and ticketStatus != ''"> and ticket_status = #{ticketStatus} </if>
+		  		  <if test="payStatus != null and payStatus != ''"> and pay_status = #{payStatus} </if>
+		  		  <if test="amountPayment != null and amountPayment != ''"> and amount_payment = #{amountPayment} </if>
+		  		  <if test="assessStatus != null and assessStatus != ''"> and assess_status = #{assessStatus} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="source != null and source != ''"> and source = #{source} </if>
+		  		  <if test="productId != null and productId != ''"> and product_id = #{productId} </if>
+		  		  <if test="productSalePrice != null and productSalePrice != ''"> and product_sale_price = #{productSalePrice} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ticket_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from shuttle_ticket_dev
+		 <where>  
+		  		  <if test="ticketId != null and ticketId != ''"> and ticket_id = #{ticketId} </if>
+		  		  <if test="clientId != null and clientId != ''"> and client_id = #{clientId} </if>
+		  		  <if test="mobileNumber != null and mobileNumber != ''"> and mobile_number = #{mobileNumber} </if>
+		  		  <if test="qrCodeId != null and qrCodeId != ''"> and qr_code_id = #{qrCodeId} </if>
+		  		  <if test="ticketType != null and ticketType != ''"> and ticket_type = #{ticketType} </if>
+		  		  <if test="stationType != null and stationType != ''"> and station_type = #{stationType} </if>
+		  		  <if test="passengerNumber != null and passengerNumber != ''"> and passenger_number = #{passengerNumber} </if>
+		  		  <if test="buyTicketsTime != null and buyTicketsTime != ''"> and buy_tickets_time = #{buyTicketsTime} </if>
+		  		  <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+		  		  <if test="endTime != null and endTime != ''"> and end_time = #{endTime} </if>
+		  		  <if test="useTime != null and useTime != ''"> and use_time = #{useTime} </if>
+		  		  <if test="startLocationId != null and startLocationId != ''"> and start_location_id = #{startLocationId} </if>
+		  		  <if test="startName != null and startName != ''"> and start_name = #{startName} </if>
+		  		  <if test="startAddress != null and startAddress != ''"> and start_address = #{startAddress} </if>
+		  		  <if test="startLongitude != null and startLongitude != ''"> and start_longitude = #{startLongitude} </if>
+		  		  <if test="startLatitude != null and startLatitude != ''"> and start_latitude = #{startLatitude} </if>
+		  		  <if test="startDirection != null and startDirection != ''"> and start_direction = #{startDirection} </if>
+		  		  <if test="endLocationId != null and endLocationId != ''"> and end_location_id = #{endLocationId} </if>
+		  		  <if test="endName != null and endName != ''"> and end_name = #{endName} </if>
+		  		  <if test="endAddress != null and endAddress != ''"> and end_address = #{endAddress} </if>
+		  		  <if test="endLongitude != null and endLongitude != ''"> and end_longitude = #{endLongitude} </if>
+		  		  <if test="endLatitude != null and endLatitude != ''"> and end_latitude = #{endLatitude} </if>
+		  		  <if test="endDirection != null and endDirection != ''"> and end_direction = #{endDirection} </if>
+		  		  <if test="ticketStatus != null and ticketStatus != ''"> and ticket_status = #{ticketStatus} </if>
+		  		  <if test="payStatus != null and payStatus != ''"> and pay_status = #{payStatus} </if>
+		  		  <if test="amountPayment != null and amountPayment != ''"> and amount_payment = #{amountPayment} </if>
+		  		  <if test="assessStatus != null and assessStatus != ''"> and assess_status = #{assessStatus} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="creator != null and creator != ''"> and creator = #{creator} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="updator != null and updator != ''"> and updator = #{updator} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="source != null and source != ''"> and source = #{source} </if>
+		  		  <if test="productId != null and productId != ''"> and product_id = #{productId} </if>
+		  		  <if test="productSalePrice != null and productSalePrice != ''"> and product_sale_price = #{productSalePrice} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.shuttle.web.ticket.domain.TicketDevDO">
+		insert into shuttle_ticket_dev
+		(
+			`ticket_id`, 
+			`client_id`, 
+			`mobile_number`, 
+			`qr_code_id`, 
+			`ticket_type`, 
+			`station_type`, 
+			`passenger_number`, 
+			`buy_tickets_time`, 
+			`start_time`, 
+			`end_time`, 
+			`use_time`, 
+			`start_location_id`, 
+			`start_name`, 
+			`start_address`, 
+			`start_longitude`, 
+			`start_latitude`, 
+			`start_direction`, 
+			`end_location_id`, 
+			`end_name`, 
+			`end_address`, 
+			`end_longitude`, 
+			`end_latitude`, 
+			`end_direction`, 
+			`ticket_status`, 
+			`pay_status`, 
+			`amount_payment`, 
+			`assess_status`, 
+			`create_time`, 
+			`creator`, 
+			`update_time`, 
+			`updator`, 
+			`remark`, 
+			`source`, 
+			`product_id`, 
+			`product_sale_price`
+		)
+		values
+		(
+			#{ticketId}, 
+			#{clientId}, 
+			#{mobileNumber}, 
+			#{qrCodeId}, 
+			#{ticketType}, 
+			#{stationType}, 
+			#{passengerNumber}, 
+			#{buyTicketsTime}, 
+			#{startTime}, 
+			#{endTime}, 
+			#{useTime}, 
+			#{startLocationId}, 
+			#{startName}, 
+			#{startAddress}, 
+			#{startLongitude}, 
+			#{startLatitude}, 
+			#{startDirection}, 
+			#{endLocationId}, 
+			#{endName}, 
+			#{endAddress}, 
+			#{endLongitude}, 
+			#{endLatitude}, 
+			#{endDirection}, 
+			#{ticketStatus}, 
+			#{payStatus}, 
+			#{amountPayment}, 
+			#{assessStatus}, 
+			#{createTime}, 
+			#{creator}, 
+			#{updateTime}, 
+			#{updator}, 
+			#{remark}, 
+			#{source}, 
+			#{productId}, 
+			#{productSalePrice}, 
+			#{merchantsId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.shuttle.web.ticket.domain.TicketDevDO">
+		update shuttle_ticket_dev 
+		<set>
+			<if test="clientId != null">`client_id` = #{clientId}, </if>
+			<if test="mobileNumber != null">`mobile_number` = #{mobileNumber}, </if>
+			<if test="qrCodeId != null">`qr_code_id` = #{qrCodeId}, </if>
+			<if test="ticketType != null">`ticket_type` = #{ticketType}, </if>
+			<if test="stationType != null">`station_type` = #{stationType}, </if>
+			<if test="passengerNumber != null">`passenger_number` = #{passengerNumber}, </if>
+			<if test="buyTicketsTime != null">`buy_tickets_time` = #{buyTicketsTime}, </if>
+			<if test="startTime != null">`start_time` = #{startTime}, </if>
+			<if test="endTime != null">`end_time` = #{endTime}, </if>
+			<if test="useTime != null">`use_time` = #{useTime}, </if>
+			<if test="startLocationId != null">`start_location_id` = #{startLocationId}, </if>
+			<if test="startName != null">`start_name` = #{startName}, </if>
+			<if test="startAddress != null">`start_address` = #{startAddress}, </if>
+			<if test="startLongitude != null">`start_longitude` = #{startLongitude}, </if>
+			<if test="startLatitude != null">`start_latitude` = #{startLatitude}, </if>
+			<if test="startDirection != null">`start_direction` = #{startDirection}, </if>
+			<if test="endLocationId != null">`end_location_id` = #{endLocationId}, </if>
+			<if test="endName != null">`end_name` = #{endName}, </if>
+			<if test="endAddress != null">`end_address` = #{endAddress}, </if>
+			<if test="endLongitude != null">`end_longitude` = #{endLongitude}, </if>
+			<if test="endLatitude != null">`end_latitude` = #{endLatitude}, </if>
+			<if test="endDirection != null">`end_direction` = #{endDirection}, </if>
+			<if test="ticketStatus != null">`ticket_status` = #{ticketStatus}, </if>
+			<if test="payStatus != null">`pay_status` = #{payStatus}, </if>
+			<if test="amountPayment != null">`amount_payment` = #{amountPayment}, </if>
+			<if test="assessStatus != null">`assess_status` = #{assessStatus}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="creator != null">`creator` = #{creator}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="updator != null">`updator` = #{updator}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="source != null">`source` = #{source}, </if>
+			<if test="productId != null">`product_id` = #{productId}, </if>
+			<if test="productSalePrice != null">`product_sale_price` = #{productSalePrice}, </if>
+		</set>
+		where ticket_id = #{ticketId}
+	</update>
+	
+	<delete id="remove">
+		delete from shuttle_ticket_dev where ticket_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from shuttle_ticket_dev where ticket_id in 
+		<foreach item="ticketId" collection="array" open="(" separator="," close=")">
+			#{ticketId}
+		</foreach>
+	</delete>
+
+</mapper>
