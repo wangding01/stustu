@@ -48,28 +48,55 @@ function load() {
 									checkbox : true
 								},
 																{
-									field : 'id', 
-									title : '主键' 
-								},
-																{
 									field : 'loan', 
-									title : '贷款方式' 
+									title : '贷款方式',
+									formatter : function(value, row, index) {
+									if(value ==1){
+									return "房贷";
+									}else if(value == 2){
+									return "保单";
+									}else if(value == 3){
+									return "车贷";
+									}else if(value == 4){
+									return "全款房信贷";
+									}else if(value == 5){
+									return "同行贷";
+									}else if(value == 6){
+									return "生意贷";
+									}else if(value == 7){
+									return "抵押贷";
+									}else if(value == 8){
+									return "全川车子抵押贷";
+									}
+									}
 								},
 																{
 									field : 'lendingBank', 
 									title : '放款银行' 
 								},
 																{
-									field : 'interest', 
-									title : '利息' 
+									field : 'dayInterst', 
+									title : '天/利息（元）' 
+								},
+																{
+									field : 'minInterest', 
+									title : '最小利息（厘）' 
+								},
+																{
+									field : 'maxInterest', 
+									title : '最大利息（厘）' 
 								},
 																{
 									field : 'area', 
 									title : '地区范围' 
 								},
 																{
-									field : 'lendingLines', 
-									title : '额度' 
+									field : 'maxLendingLines', 
+									title : '最大额度(元）' 
+								},
+																{
+									field : 'minLendingLines', 
+									title : '最小额度(元）' 
 								},
 																{
 									field : 'lendingLimit', 
@@ -78,8 +105,8 @@ function load() {
 																{
 									field : 'access', 
 									title : '准入条件' 
-								},
-/**																{
+								},/**
+																{
 									field : 'creditConditions', 
 									title : '征信条件' 
 								},
@@ -170,6 +197,10 @@ function load() {
 																{
 									field : 'contactPhone', 
 									title : '联系人电话' 
+								},
+																{
+									field : 'contractWay', 
+									title : '签约方式' 
 								},**/
 																{
 									title : '操作',
@@ -185,7 +216,7 @@ function load() {
 										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
 												+ row.id
 												+ '\')"><i class="fa fa-key"></i></a> ';
-										return e + d + f ;
+										return e + d ;
 									}
 								} ]
 					});

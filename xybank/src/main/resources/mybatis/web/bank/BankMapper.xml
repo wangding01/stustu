@@ -4,19 +4,21 @@
 <mapper namespace="com.shuttle.web.bank.dao.BankDao">
 
 	<select id="get" resultType="com.shuttle.web.bank.domain.BankDO">
-		select `id`,`loan`,`lending_bank`,`min_interest`,`max_interest`,`area`,`lending_lines`,`lending_limit`,`access`,`credit_conditions`,`min_age`,`max_age`,`lending_time`,`poundage`,`magnification`,`disadvantage`,`advantage`,`special_requirements`,`mortgage_type`,`reimbursement_means`,`lending_rate`,`need_information`,`hose_age`,`customer_request`,`process`,`need_certificates`,`evaluate_notary_fees`,`need_national`,`rebates`,`gps_fees`,`contact`,`contact_phone` from table_bank where id = #{value}
+		select `id`,`loan`,`lending_bank`,`day_interst`,`min_interest`,`max_interest`,`area`,`max_lending_lines`,`min_lending_lines`,`lending_limit`,`access`,`credit_conditions`,`min_age`,`max_age`,`lending_time`,`poundage`,`magnification`,`disadvantage`,`advantage`,`special_requirements`,`mortgage_type`,`reimbursement_means`,`lending_rate`,`need_information`,`hose_age`,`customer_request`,`process`,`need_certificates`,`evaluate_notary_fees`,`need_national`,`rebates`,`gps_fees`,`contact`,`contact_phone`,`contract_way` from table_bank where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.shuttle.web.bank.domain.BankDO">
-		select `id`,`loan`,`lending_bank`,`min_interest`,`max_interest`,`area`,`lending_lines`,`lending_limit`,`access`,`credit_conditions`,`min_age`,`max_age`,`lending_time`,`poundage`,`magnification`,`disadvantage`,`advantage`,`special_requirements`,`mortgage_type`,`reimbursement_means`,`lending_rate`,`need_information`,`hose_age`,`customer_request`,`process`,`need_certificates`,`evaluate_notary_fees`,`need_national`,`rebates`,`gps_fees`,`contact`,`contact_phone` from table_bank
+		select `id`,`loan`,`lending_bank`,`day_interst`,`min_interest`,`max_interest`,`area`,`max_lending_lines`,`min_lending_lines`,`lending_limit`,`access`,`credit_conditions`,`min_age`,`max_age`,`lending_time`,`poundage`,`magnification`,`disadvantage`,`advantage`,`special_requirements`,`mortgage_type`,`reimbursement_means`,`lending_rate`,`need_information`,`hose_age`,`customer_request`,`process`,`need_certificates`,`evaluate_notary_fees`,`need_national`,`rebates`,`gps_fees`,`contact`,`contact_phone`,`contract_way` from table_bank
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="loan != null and loan != ''"> and loan = #{loan} </if>
 		  		  <if test="lendingBank != null and lendingBank != ''"> and lending_bank = #{lendingBank} </if>
+		  		  <if test="dayInterst != null and dayInterst != ''"> and day_interst = #{dayInterst} </if>
 		  		  <if test="minInterest != null and minInterest != ''"> and min_interest = #{minInterest} </if>
 		  		  <if test="maxInterest != null and maxInterest != ''"> and max_interest = #{maxInterest} </if>
 		  		  <if test="area != null and area != ''"> and area = #{area} </if>
-		  		  <if test="lendingLines != null and lendingLines != ''"> and lending_lines = #{lendingLines} </if>
+		  		  <if test="maxLendingLines != null and maxLendingLines != ''"> and max_lending_lines = #{maxLendingLines} </if>
+		  		  <if test="minLendingLines != null and minLendingLines != ''"> and min_lending_lines = #{minLendingLines} </if>
 		  		  <if test="lendingLimit != null and lendingLimit != ''"> and lending_limit = #{lendingLimit} </if>
 		  		  <if test="access != null and access != ''"> and access = #{access} </if>
 		  		  <if test="creditConditions != null and creditConditions != ''"> and credit_conditions = #{creditConditions} </if>
@@ -42,6 +44,7 @@
 		  		  <if test="gpsFees != null and gpsFees != ''"> and gps_fees = #{gpsFees} </if>
 		  		  <if test="contact != null and contact != ''"> and contact = #{contact} </if>
 		  		  <if test="contactPhone != null and contactPhone != ''"> and contact_phone = #{contactPhone} </if>
+		  		  <if test="contractWay != null and contractWay != ''"> and contract_way = #{contractWay} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -62,10 +65,12 @@
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="loan != null and loan != ''"> and loan = #{loan} </if>
 		  		  <if test="lendingBank != null and lendingBank != ''"> and lending_bank = #{lendingBank} </if>
+		  		  <if test="dayInterst != null and dayInterst != ''"> and day_interst = #{dayInterst} </if>
 		  		  <if test="minInterest != null and minInterest != ''"> and min_interest = #{minInterest} </if>
 		  		  <if test="maxInterest != null and maxInterest != ''"> and max_interest = #{maxInterest} </if>
 		  		  <if test="area != null and area != ''"> and area = #{area} </if>
-		  		  <if test="lendingLines != null and lendingLines != ''"> and lending_lines = #{lendingLines} </if>
+		  		  <if test="maxLendingLines != null and maxLendingLines != ''"> and max_lending_lines = #{maxLendingLines} </if>
+		  		  <if test="minLendingLines != null and minLendingLines != ''"> and min_lending_lines = #{minLendingLines} </if>
 		  		  <if test="lendingLimit != null and lendingLimit != ''"> and lending_limit = #{lendingLimit} </if>
 		  		  <if test="access != null and access != ''"> and access = #{access} </if>
 		  		  <if test="creditConditions != null and creditConditions != ''"> and credit_conditions = #{creditConditions} </if>
@@ -91,18 +96,22 @@
 		  		  <if test="gpsFees != null and gpsFees != ''"> and gps_fees = #{gpsFees} </if>
 		  		  <if test="contact != null and contact != ''"> and contact = #{contact} </if>
 		  		  <if test="contactPhone != null and contactPhone != ''"> and contact_phone = #{contactPhone} </if>
+		  		  <if test="contractWay != null and contractWay != ''"> and contract_way = #{contractWay} </if>
 		  		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.shuttle.web.bank.domain.BankDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.shuttle.web.bank.domain.BankDO">
 		insert into table_bank
 		(
+			`id`, 
 			`loan`, 
 			`lending_bank`, 
+			`day_interst`, 
 			`min_interest`, 
 			`max_interest`, 
 			`area`, 
-			`lending_lines`, 
+			`max_lending_lines`, 
+			`min_lending_lines`, 
 			`lending_limit`, 
 			`access`, 
 			`credit_conditions`, 
@@ -127,16 +136,20 @@
 			`rebates`, 
 			`gps_fees`, 
 			`contact`, 
-			`contact_phone`
+			`contact_phone`, 
+			`contract_way`
 		)
 		values
 		(
+			#{id}, 
 			#{loan}, 
 			#{lendingBank}, 
+			#{dayInterst}, 
 			#{minInterest}, 
 			#{maxInterest}, 
 			#{area}, 
-			#{lendingLines}, 
+			#{maxLendingLines}, 
+			#{minLendingLines}, 
 			#{lendingLimit}, 
 			#{access}, 
 			#{creditConditions}, 
@@ -161,7 +174,8 @@
 			#{rebates}, 
 			#{gpsFees}, 
 			#{contact}, 
-			#{contactPhone}
+			#{contactPhone}, 
+			#{contractWay}
 		)
 	</insert>
 	 
@@ -170,10 +184,12 @@
 		<set>
 			<if test="loan != null">`loan` = #{loan}, </if>
 			<if test="lendingBank != null">`lending_bank` = #{lendingBank}, </if>
-			<if test="minInterest != null and minInterest != ''"> and min_interest = #{minInterest}, </if>
-		  	<if test="maxInterest != null and maxInterest != ''"> and max_interest = #{maxInterest}, </if>
+			<if test="dayInterst != null">`day_interst` = #{dayInterst}, </if>
+			<if test="minInterest != null">`min_interest` = #{minInterest}, </if>
+			<if test="maxInterest != null">`max_interest` = #{maxInterest}, </if>
 			<if test="area != null">`area` = #{area}, </if>
-			<if test="lendingLines != null">`lending_lines` = #{lendingLines}, </if>
+			<if test="maxLendingLines != null">`max_lending_lines` = #{maxLendingLines}, </if>
+			<if test="minLendingLines != null">`min_lending_lines` = #{minLendingLines}, </if>
 			<if test="lendingLimit != null">`lending_limit` = #{lendingLimit}, </if>
 			<if test="access != null">`access` = #{access}, </if>
 			<if test="creditConditions != null">`credit_conditions` = #{creditConditions}, </if>
@@ -198,7 +214,8 @@
 			<if test="rebates != null">`rebates` = #{rebates}, </if>
 			<if test="gpsFees != null">`gps_fees` = #{gpsFees}, </if>
 			<if test="contact != null">`contact` = #{contact}, </if>
-			<if test="contactPhone != null">`contact_phone` = #{contactPhone}</if>
+			<if test="contactPhone != null">`contact_phone` = #{contactPhone}, </if>
+			<if test="contractWay != null">`contract_way` = #{contractWay}</if>
 		</set>
 		where id = #{id}
 	</update>

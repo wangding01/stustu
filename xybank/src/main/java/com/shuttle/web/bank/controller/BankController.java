@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +25,7 @@ import com.shuttle.web.bank.service.BankService;
  * 
  * @author dongao
  * @email dongao@maoniuchuxing.net
- * @date 2018-12-29 20:57:44
+ * @date 2019-01-03 14:28:35
  */
  
 @Controller

@@ -6,13 +6,12 @@ import java.util.Map;
 
 import com.shuttle.web.bank.domain.BankDO;
 
-
 /**
  * 
  * 
  * @author dongao
  * @email dongao@maoniuchuxing.net
- * @date 2018-12-29 20:57:44
+ * @date 2019-01-03 14:28:35
  */
 public interface BankService {
 	

@@ -1,6 +1,7 @@
 package com.shuttle.web.bank.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 
@@ -9,25 +10,29 @@ import java.io.Serializable;
  * 
  * @author dongao
  * @email dongao@maoniuchuxing.net
- * @date 2018-12-29 20:57:44
+ * @date 2019-01-03 14:28:35
  */
 public class BankDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//主键
 	private Integer id;
-	//贷款方式
+	//贷款方式（1.房贷2.保单3.车贷4.全款房信贷5.同行贷6.生意贷7.抵押贷8.全川车子抵押贷）
 	private Integer loan;
 	//放款银行
 	private String lendingBank;
-	//最小利息
+	//天/利息（基本单位元）
+	private Double dayInterst;
+	//最小利息（基本单位为厘）
 	private Integer minInterest;
-	//最大利息
+	//最大利息（基本单位为厘）
 	private Integer maxInterest;
 	//地区范围
 	private String area;
-	//额度
-	private Integer lendingLines;
+	//最大额度(单位为元）
+	private Integer maxLendingLines;
+	//最小额度(单位为元）
+	private Integer minLendingLines;
 	//期限
 	private String lendingLimit;
 	//准入条件
@@ -43,7 +48,7 @@ public class BankDO implements Serializable {
 	//手续费
 	private String poundage;
 	//放大倍数
-	private Integer magnification;
+	private String magnification;
 	//劣势
 	private String disadvantage;
 	//优势
@@ -78,6 +83,8 @@ public class BankDO implements Serializable {
 	private String contact;
 	//联系人电话
 	private String contactPhone;
+	//签约方式
+	private String contractWay;
 
 	/**
 	 * 设置：主键
@@ -92,13 +99,13 @@ public class BankDO implements Serializable {
 		return id;
 	}
 	/**
-	 * 设置：贷款方式
+	 * 设置：贷款方式（1.房贷2.保单3.车贷4.全款房信贷5.同行贷6.生意贷7.抵押贷8.全川车子抵押贷）
 	 */
 	public void setLoan(Integer loan) {
 		this.loan = loan;
 	}
 	/**
-	 * 获取：贷款方式
+	 * 获取：贷款方式（1.房贷2.保单3.车贷4.全款房信贷5.同行贷6.生意贷7.抵押贷8.全川车子抵押贷）
 	 */
 	public Integer getLoan() {
 		return loan;
@@ -115,18 +122,41 @@ public class BankDO implements Serializable {
 	public String getLendingBank() {
 		return lendingBank;
 	}
-	
-	public Integer getMinInterest() {
-		return minInterest;
+	/**
+	 * 设置：天/利息（基本单位元）
+	 */
+	public void setDayInterst(Double dayInterst) {
+		this.dayInterst = dayInterst;
 	}
+	/**
+	 * 获取：天/利息（基本单位元）
+	 */
+	public Double getDayInterst() {
+		return dayInterst;
+	}
+	/**
+	 * 设置：最小利息（基本单位为厘）
+	 */
 	public void setMinInterest(Integer minInterest) {
 		this.minInterest = minInterest;
 	}
-	public Integer getMaxInterest() {
-		return maxInterest;
+	/**
+	 * 获取：最小利息（基本单位为厘）
+	 */
+	public Integer getMinInterest() {
+		return minInterest;
 	}
+	/**
+	 * 设置：最大利息（基本单位为厘）
+	 */
 	public void setMaxInterest(Integer maxInterest) {
 		this.maxInterest = maxInterest;
+	}
+	/**
+	 * 获取：最大利息（基本单位为厘）
+	 */
+	public Integer getMaxInterest() {
+		return maxInterest;
 	}
 	/**
 	 * 设置：地区范围
@@ -141,16 +171,28 @@ public class BankDO implements Serializable {
 		return area;
 	}
 	/**
-	 * 设置：额度
+	 * 设置：最大额度(单位为元）
 	 */
-	public void setLendingLines(Integer lendingLines) {
-		this.lendingLines = lendingLines;
+	public void setMaxLendingLines(Integer maxLendingLines) {
+		this.maxLendingLines = maxLendingLines;
 	}
 	/**
-	 * 获取：额度
+	 * 获取：最大额度(单位为元）
 	 */
-	public Integer getLendingLines() {
-		return lendingLines;
+	public Integer getMaxLendingLines() {
+		return maxLendingLines;
+	}
+	/**
+	 * 设置：最小额度(单位为元）
+	 */
+	public void setMinLendingLines(Integer minLendingLines) {
+		this.minLendingLines = minLendingLines;
+	}
+	/**
+	 * 获取：最小额度(单位为元）
+	 */
+	public Integer getMinLendingLines() {
+		return minLendingLines;
 	}
 	/**
 	 * 设置：期限
@@ -239,13 +281,13 @@ public class BankDO implements Serializable {
 	/**
 	 * 设置：放大倍数
 	 */
-	public void setMagnification(Integer magnification) {
+	public void setMagnification(String magnification) {
 		this.magnification = magnification;
 	}
 	/**
 	 * 获取：放大倍数
 	 */
-	public Integer getMagnification() {
+	public String getMagnification() {
 		return magnification;
 	}
 	/**
@@ -451,5 +493,17 @@ public class BankDO implements Serializable {
 	 */
 	public String getContactPhone() {
 		return contactPhone;
+	}
+	/**
+	 * 设置：签约方式
+	 */
+	public void setContractWay(String contractWay) {
+		this.contractWay = contractWay;
+	}
+	/**
+	 * 获取：签约方式
+	 */
+	public String getContractWay() {
+		return contractWay;
 	}
 }
