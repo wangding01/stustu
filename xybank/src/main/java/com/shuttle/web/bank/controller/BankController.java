@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shuttle.common.utils.PageUtils;
 import com.shuttle.common.utils.Query;
 import com.shuttle.common.utils.R;
-import com.shuttle.ttt.Mu;
 import com.shuttle.web.bank.domain.BankDO;
 import com.shuttle.web.bank.service.BankService;
 
@@ -41,7 +40,6 @@ public class BankController {
 		return "web/bank/bank";
 	}
 
-	@Mu
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("web:web:bank:bank")
