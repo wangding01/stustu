@@ -62,6 +62,8 @@ public class AlipayProperties {
 		sb.append(", 商户RSA私钥: ").append(getKeyDescription(appPrivateKey)).append("\n");
 		sb.append(", 支付宝RSA公钥: ").append(getKeyDescription(alipayPublicKey)).append("\n");
 		sb.append(", 签名类型: ").append(signType).append("\n");
+		sb.append(", 同步地址: ").append(returnUrl).append("\n");
+		sb.append(", 异步地址: ").append(notifyUrl).append("\n");
 
 		sb.append(", 查询重试次数: ").append(maxQueryRetry).append("\n");
 		sb.append(", 查询间隔(毫秒): ").append(queryDuration).append("\n");

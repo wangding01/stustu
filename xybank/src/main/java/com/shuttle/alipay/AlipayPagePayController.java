@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,9 @@ public class AlipayPagePayController {
 	@Autowired
 	private AlipayController alipayController;
 
+	@Value("${pay.alipay.agentUrl}")
+	private String alipayAgentUrl;
+
 	@RequestMapping("/WebToPay")
 	public String toPay() {
 		return "AgPay/WebToPay";
@@ -56,7 +60,7 @@ public class AlipayPagePayController {
 		model.setProductCode(productCode);
 
 		AlipayTradePagePayRequest pagePayRequest = new AlipayTradePagePayRequest();
-		pagePayRequest.setReturnUrl("http://zxbw4u.natappfree.cc/alipay/page/returnUrl");
+		pagePayRequest.setReturnUrl(alipayAgentUrl + "/alipay/page/returnUrl");
 		pagePayRequest.setNotifyUrl(alipayProperties.getNotifyUrl());
 		pagePayRequest.setBizModel(model);
 
@@ -81,11 +85,12 @@ public class AlipayPagePayController {
 			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
 			// 支付宝交易号
 			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
-
-			return "pagePaySuccess";
+			System.out.println(out_trade_no + "商户订单号<<<<<<<<<<<<<<<<<<<<<<");
+			System.out.println(trade_no + "支付宝交易号<<<<<<<<<<<<<<<<<<<<<<");
+			return "AgPay/pagePaySuccess";
 
 		} else {
-			return "pagePayFail";
+			return "AgPay/pagePayFail";
 
 		}
 	}
