@@ -1,5 +1,7 @@
 package com.shuttle.system.controller;
 
+import java.util.List;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -24,8 +26,6 @@ import com.shuttle.common.utils.ShiroUtils;
 import com.shuttle.system.domain.MenuDO;
 import com.shuttle.system.service.MenuService;
 
-import java.util.List;
-
 @Controller
 public class LoginController extends BaseController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -34,6 +34,7 @@ public class LoginController extends BaseController {
 	MenuService menuService;
 	@Autowired
 	FileService fileService;
+
 	@GetMapping({ "/", "" })
 	String welcome(Model model) {
 		return "redirect:/login";
@@ -46,14 +47,14 @@ public class LoginController extends BaseController {
 		model.addAttribute("menus", menus);
 		model.addAttribute("name", getUser().getName());
 		FileDO fileDO = fileService.get(getUser().getPicId());
-		if(fileDO!=null&&fileDO.getUrl()!=null){
-			if(fileService.isExist(fileDO.getUrl())){
-				model.addAttribute("picUrl",fileDO.getUrl());
-			}else {
-				model.addAttribute("picUrl","/img/photo_s.jpg");
+		if (fileDO != null && fileDO.getUrl() != null) {
+			if (fileService.isExist(fileDO.getUrl())) {
+				model.addAttribute("picUrl", fileDO.getUrl());
+			} else {
+				model.addAttribute("picUrl", "/img/photo_s.jpg");
 			}
-		}else {
-			model.addAttribute("picUrl","/img/photo_s.jpg");
+		} else {
+			model.addAttribute("picUrl", "/img/photo_s.jpg");
 		}
 		model.addAttribute("username", getUser().getUsername());
 		return "index_v1";
@@ -93,6 +94,12 @@ public class LoginController extends BaseController {
 	@GetMapping("/403")
 	String error403() {
 		return "403";
+	}
+
+	@GetMapping("/partition")
+	String partition() {
+		fileService.createPartition();
+		return "";
 	}
 
 }

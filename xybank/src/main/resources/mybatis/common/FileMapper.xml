@@ -73,5 +73,7 @@
 			#{id}
 		</foreach>
 	</delete>
-
+	<update id="createPartition" parameterType="Map">
+		${sql3}
+	</update>
 </mapper>
