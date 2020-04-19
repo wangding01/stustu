@@ -22,7 +22,7 @@ public class GoRun03 {
 
 	public static void main(String[] args) throws IOException {
 		log.info("开始将图片转成base64");
-		File file = new File("F:\\7.jpg");
+		File file = new File("F:\\4.jpg");
 		FileInputStream fileInputStream = new FileInputStream(file);
 		byte[] by = new byte[fileInputStream.available()];// 一次性全部读取所有的字节
 		fileInputStream.read(by);
@@ -32,7 +32,7 @@ public class GoRun03 {
 		String filpBase64 = ImageFlipTool.ImageFlip(iamgeBase64, 90);
 		log.info("开始输出图片。。。");
 		Decoder decoder = Base64.getDecoder();
-		FileOutputStream fileOutputStream1 = new FileOutputStream(new File("F:\\8.jpg"));
+		FileOutputStream fileOutputStream1 = new FileOutputStream(new File("F:\\7.jpg"));
 		fileOutputStream1.write(decoder.decode(filpBase64));
 		fileOutputStream1.close();
 	}
